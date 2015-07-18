@@ -1,3 +1,12 @@
 h1{
 	text-align: center;
 }
+
+.profilePicture{
+	height:200px;
+	width: 200px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 80px;
+}

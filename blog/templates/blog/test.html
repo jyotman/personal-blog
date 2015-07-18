@@ -1,10 +1,11 @@
+{% load staticfiles %}
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.green-pink.min.css" /> 
 		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
-		<link rel="stylesheet" href="{% static "css/blog.css" %}">
+		<link rel="stylesheet" href="{% static "css/resume.css" %}" type="text/css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<title>Resume</title>
 	</head>
@@ -14,7 +15,7 @@
 		  <header class="mdl-layout__header">
 		    <div class="mdl-layout__header-row">
 		      <!-- Title -->
-		      <span class="mdl-layout-title">Title</span>
+		      <span class="mdl-layout-title">Menu</span>
 		      <!-- Add spacer, to align navigation to the right -->
 		      <div class="mdl-layout-spacer"></div>
 		      <!-- Navigation. We hide it in small screens. -->
@@ -28,7 +29,7 @@
 		    </div>
 		  </header>
 		  <div class="mdl-layout__drawer">
-		    <span class="mdl-layout-title">Title</span>
+		    <span class="mdl-layout-title">Menu</span>
 		    <nav class="mdl-navigation">
 		      <a class="mdl-navigation__link" href="">Blog</a>
 		      <a class="mdl-navigation__link" href="">About Me</a>
@@ -39,6 +40,7 @@
 		  <main class="mdl-layout__content">
 		    <div class="page-content">
 		    <!-- Your content goes here -->
+		    <img src="{% static "profile.gif" %}" class="profilePicture" />
 		    <h1>Jyotman Singh</h1>
 		    </div>
 		  </main>
