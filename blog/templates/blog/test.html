@@ -1,21 +1,47 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.green-pink.min.css" /> 
 		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+		<link rel="stylesheet" href="{% static "css/blog.css" %}">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-		<title>Demo</title>
+		<title>Resume</title>
 	</head>
 	<body>
-		<h1>This is a sample project</h1>
-		<button><a href="google.com">Click!</a></button>
-		<!-- Accent-colored raised button with ripple -->
-		<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-		  Button
-		</button>
-		<!-- Colored FAB button -->
-		<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect">
-		  <i class="material-icons">add</i>
-		</button>
+		<!-- Always shows a header, even in smaller screens. -->
+		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--accent">
+		  <header class="mdl-layout__header">
+		    <div class="mdl-layout__header-row">
+		      <!-- Title -->
+		      <span class="mdl-layout-title">Title</span>
+		      <!-- Add spacer, to align navigation to the right -->
+		      <div class="mdl-layout-spacer"></div>
+		      <!-- Navigation. We hide it in small screens. -->
+		      <nav class="mdl-navigation mdl-layout--large-screen-only">
+		        <a class="mdl-navigation__link" href=""><strong>Summary</strong></a>
+		        <a class="mdl-navigation__link" href=""><strong>Education</strong></a>
+		        <a class="mdl-navigation__link" href=""><strong>Experience</strong></a>
+		        <a class="mdl-navigation__link" href=""><strong>Intrests</strong></a>
+		        <a class="mdl-navigation__link" href=""><strong>Skills</strong></a>
+		      </nav>
+		    </div>
+		  </header>
+		  <div class="mdl-layout__drawer">
+		    <span class="mdl-layout-title">Title</span>
+		    <nav class="mdl-navigation">
+		      <a class="mdl-navigation__link" href="">Blog</a>
+		      <a class="mdl-navigation__link" href="">About Me</a>
+		      <a class="mdl-navigation__link" href="">Link</a>
+		      <a class="mdl-navigation__link" href="">Link</a>
+		    </nav>
+		  </div>
+		  <main class="mdl-layout__content">
+		    <div class="page-content">
+		    <!-- Your content goes here -->
+		    <h1>Jyotman Singh</h1>
+		    </div>
+		  </main>
+		</div>
 	</body>
 </html>
