@@ -17,3 +17,10 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+class Parking(models.Model):
+    slot = models.IntegerField(default = -1)
+    status = models.CharField(max_length = 7)
+
+    def __str__(self):
+        return self.status
+
