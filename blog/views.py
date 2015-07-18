@@ -60,3 +60,6 @@ def parkingAccess(request):
     data = [{'slot':item.slot, 'status':item.status} for item in querySet]
     response = JsonResponse(data, safe=False)
     return HttpResponse(response)
+
+def test(request):
+    return render(request, 'blog/test.html')
