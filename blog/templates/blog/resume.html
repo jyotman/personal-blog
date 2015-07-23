@@ -1,0 +1,300 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.green-pink.min.css" /> 
+		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.1/material.min.js"></script>
+		<link rel="stylesheet" href="{% static "css/resume.css" %}" type="text/css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+		<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+		<!--<script src="{% static "js/resume-jquery.js" %}"></script>-->
+		<title>Resume</title>
+
+	</head>
+	<body>
+		<!-- Always shows a header, even in smaller screens. -->
+		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--accent">
+		  <header class="mdl-layout__header">
+		    <div class="mdl-layout__header-row">
+		      <!-- Title -->
+		      <span class="mdl-layout-title navigation-font-menu">Menu</span>
+		      <!-- Add spacer, to align navigation to the right -->
+		      <div class="mdl-layout-spacer"></div>
+		      <!-- Navigation. We hide it in small screens. -->
+		      <nav class="mdl-navigation mdl-layout--large-screen-only">
+		        <a class="mdl-navigation__link navigation-font" href="#sum">Summary</a>
+		        <a class="mdl-navigation__link navigation-font" href="#edu">Education</a>
+		        <a class="mdl-navigation__link navigation-font" href="#ski">Skills</a>
+		        <a class="mdl-navigation__link navigation-font" href="#exp">Experience</a>
+		        <a class="mdl-navigation__link navigation-font" href="#int">Intrests</a>
+		      </nav>
+		    </div>
+		  </header>
+		  <div class="mdl-layout__drawer">
+		    <span style="background-color: #f50057" class="mdl-layout-title navigation-font-menu">Menu</span>
+		    <nav class="mdl-navigation">
+		      <a class="mdl-navigation__link navigation-font" href="{% url "blog.views.post_list" %}">Blog</a>
+		      <a class="mdl-navigation__link navigation-font" href="">About Me</a>
+		      <a class="mdl-navigation__link navigation-font" href=""></a>
+		      <a class="mdl-navigation__link navigation-font" href=""></a>
+		    </nav>
+		  </div>
+		  <main class="mdl-layout__content">
+		    <div class="page-content">
+		    <!-- Your content goes here -->
+		    	<img src="{% static "profile.gif" %}" class="profilePicture" />
+		    	<h1>Jyotman Singh</h1>
+		    	<!-- ICONS -->
+		    	<div style="text-align:center; margin-bottom:10%">
+		    		<a href="https://www.facebook.com/jyotman.singh" target="_newtab"><img src="{% static "facebook.png" %}" onmouseover="this.src='{% static "facebook-hover.png" %}'" onmouseout="this.src='{% static "facebook.png" %}'" class="icons"></a>
+		    		<a href="https://plus.google.com/101825191107472032030/posts" target="_newtab"><img src="{% static "googleplus.png" %}" onmouseover="this.src='{% static "googleplus-hover.png" %}'" onmouseout="this.src='{% static "googleplus.png" %}'" class="icons"></a>
+		    		<a href="https://in.linkedin.com/in/jyotman94" target="_newtab"><img src="{% static "linkedin.png" %}" onmouseover="this.src='{% static "linkedin-hover.png" %}'" onmouseout="this.src='{% static "linkedin.png" %}'" class="icons"></a>
+		    		<a href="https://twitter.com/Jyotman94" target="_newtab"><img src="{% static "twitter.png" %}" onmouseover="this.src='{% static "twitter-hover.png" %}'" onmouseout="this.src='{% static "twitter.png" %}'" class="icons"></a>
+		    		<a href="http://stackoverflow.com/users/4440874/jyotman-singh" target="_newtab"><img src="{% static "stackoverflow.png" %}" onmouseover="this.src='{% static "stackoverflow-hover.png" %}'" onmouseout="this.src='{% static "stackoverflow.png" %}'" class="icons"></a>
+		    	</div>
+
+		    	<h3 id="sum" class="margin-default">Personal Summary</h3>
+		    	<hr class="margin-default">
+				<div class="mdl-grid margin-grid">
+				  <div class="mdl-cell mdl-cell--1-col mdl-cell--stretch mdl-cell--hide-phone mdl-cell--1-col-tablet mdl-shadow--2dp" id="box1">
+				  </div>
+				  <div class="mdl-cell mdl-cell--11-col mdl-cell--4-col-phone mdl-cell--7-col-tablet">
+				  	<p>This is the first paragraph. It equals 4 columns normally. But on a tablet it equals 6 columns. Now we are gonna add some rubbish to make this paragrapg unnecessarily long. Ok! Hope this material design lokks good. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text.</p>
+				  </div>
+				</div>
+				<h3 id="edu" class="margin-default">Education</h3>
+		    	<hr class="margin-default">
+				<div class="mdl-grid margin-grid">
+				  <div class="mdl-cell mdl-cell--1-col mdl-cell--stretch mdl-cell--hide-phone mdl-cell--1-col-tablet mdl-shadow--2dp" id="box2">
+				  </div>
+				  <div class="mdl-cell mdl-cell--11-col mdl-cell--7-col-tablet mdl-cell--hide-phone">
+				  <!-- Desktop Table -->
+				  	<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					  <thead>
+					    <tr>
+					      <th>Year</th>
+					      <th>School/College</th>
+					      <th>Qualification</th>
+					      <th>Grade</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <td>2010</td>
+					      <td>Mount Carmel</td>
+					      <td>10th CBSE Board</td>
+					      <td>9.2 CGPA</td>
+					    </tr>
+					    <tr>
+					      <td>2012</td>
+					      <td>Mount Carmel</td>
+					      <td>12th CBSE Board</td>
+					      <td>88%</td>
+					    </tr>
+					    <tr>
+					      <td>2016</td>
+					      <td>MAIT, IP University</td>
+					      <td>B.Tech</td>
+					      <td>70%</td>
+					    </tr>
+					  </tbody>
+					</table>
+				  </div>
+				  <div class="mdl-cell mdl-cell--hide-desktop mdl-cell--hide-tablet">
+				  <!-- Mobile Table -->
+				  	<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+					  <thead>
+					    <tr>
+					      <th>Year</th>
+					      <th>Qualification</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <td>2012</td>
+					      <td>High School</td>
+					    </tr>
+					    <tr>
+					      <td>2016</td>
+					      <td>B.Tech</td>
+					    </tr>
+					  </tbody>
+					</table>
+				  </div>
+				</div>
+
+				<h3 id="ski" class="margin-default">Skills</h3>
+		    	<hr class="margin-default">
+				<div class="mdl-grid margin-grid">
+				  <div class="mdl-cell mdl-cell--1-col mdl-cell--stretch mdl-cell--hide-phone mdl-cell--1-col-tablet mdl-shadow--2dp" id="box3">
+				  </div>
+				  <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone mdl-cell--7-col-tablet">
+				  	<div class="mdl-card mdl-shadow--2dp">
+					  <div class="mdl-card__title mdl-card--expand" id="card1">
+					  </div>
+					  <div class="mdl-card__supporting-text">
+					    Java/Android
+					  </div>
+					</div>
+				  </div>
+				  <!-- Blank Column -->
+				  <div class="mdl-cell mdl-cell--1-col mdl-cell--hide-phone mdl-cell--hide-tablet">
+				  </div>
+
+				  <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone mdl-cell--7-col-tablet">
+				  	<div class="mdl-card mdl-shadow--2dp">
+					  <div class="mdl-card__title mdl-card--expand" id="card2">
+					  </div>
+					  <div class="mdl-card__supporting-text">
+					    Python/Django
+					  </div>
+					</div>
+				  </div>
+				  <!-- Blank Column -->
+				  <div class="mdl-cell mdl-cell--1-col mdl-cell--hide-phone mdl-cell--hide-tablet">
+				  </div>
+
+				  <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone mdl-cell--7-col-tablet">
+				  	<div class="mdl-card mdl-shadow--2dp">
+					  <div class="mdl-card__title mdl-card--expand" id="card3">
+					  </div>
+					  <div class="mdl-card__supporting-text">
+					    HTML/CSS
+					  </div>
+					</div>
+				  </div>
+				</div>
+				<div class="mdl-grid margin-grid2">
+				  <div class="mdl-cell mdl-cell--1-col mdl-cell--stretch mdl-cell--hide-phone mdl-cell--1-col-tablet mdl-shadow--2dp" id="box3">
+				  </div>
+				  <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone mdl-cell--7-col-tablet">
+				  	<div class="mdl-card mdl-shadow--2dp">
+					  <div class="mdl-card__title mdl-card--expand" id="card4">
+					  </div>
+					  <div class="mdl-card__supporting-text">
+					    C/C++
+					  </div>
+					</div>
+				  </div>
+				  <!-- Blank Column -->
+				  <div class="mdl-cell mdl-cell--1-col mdl-cell--hide-phone mdl-cell--hide-tablet">
+				  </div>
+
+				  <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone mdl-cell--7-col-tablet">
+				  	<div class="mdl-card mdl-shadow--2dp">
+					  <div class="mdl-card__title mdl-card--expand" id="card5">
+					  </div>
+					  <div class="mdl-card__supporting-text">
+					    Database/MySql
+					  </div>
+					</div>
+				  </div>
+				  <!-- Blank Column -->
+				  <div class="mdl-cell mdl-cell--1-col mdl-cell--hide-phone mdl-cell--hide-tablet">
+				  </div>
+
+				  <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-phone mdl-cell--7-col-tablet">
+				  	<div class="mdl-card mdl-shadow--2dp">
+					  <div class="mdl-card__title mdl-card--expand" id="card6">
+					  </div>
+					  <div class="mdl-card__supporting-text">
+					    OS/Linux
+					  </div>
+					</div>
+				  </div>
+				</div>
+				<h3 id="exp" class="margin-default">Experience</h3>
+		    	<hr class="margin-default">
+				<div class="mdl-grid margin-grid">
+				<!-- For Desktop -->
+				  <div class="mdl-cell mdl-cell--1-col mdl-cell--stretch mdl-cell--hide-phone mdl-cell--hide-tablet mdl-shadow--2dp" id="box4">
+				  </div>
+				  <div class="mdl-cell mdl-cell--4-col mdl-cell--hide-phone mdl-cell--hide-tablet">
+				  	<h5><strong>MeraMedicare</strong> : Feb 15' - April 15'</h5>
+				  </div>
+				  <div class="mdl-cell mdl-cell--4-col mdl-cell--hide-phone mdl-cell--hide-tablet">
+				  </div>
+				  <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-phone mdl-cell--hide-tablet">
+				  	<img src="{% static "meramedicare.png" %}">
+				  </div>
+				  <div class="mdl-cell mdl-cell--1-col mdl-cell--stretch mdl-cell--hide-phone mdl-cell--hide-tablet mdl-shadow--2dp" id="box4">
+				  </div>
+				  <div class="mdl-cell mdl-cell--11-col mdl-cell--hide-phone mdl-cell--hide-tablet">
+				  	<p>This is the first paragraph. It equals 4 columns normally. But on a tablet it equals 6 columns. Now we are gonna add some rubbish to make this paragrapg unnecessarily long. Ok! Hope this material design lokks good. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text.</p>
+				  </div>
+				  <div class="mdl-cell mdl-cell--1-col mdl-cell--stretch mdl-cell--hide-phone mdl-cell--hide-tablet mdl-shadow--2dp" id="box4">
+				  </div>
+				  <div class="mdl-cell mdl-cell--4-col mdl-cell--hide-phone mdl-cell--hide-tablet">
+				  	<h5 style="padding-top:10%"><strong>Thrill Pte. Lte.</strong> : June 15' - Aug 15'</h5>
+				  </div>
+				  <div class="mdl-cell mdl-cell--4-col mdl-cell--hide-phone mdl-cell--hide-tablet">
+				  </div>
+				  <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-phone mdl-cell--hide-tablet">
+				  	<img width="50%" src="{% static "thrill.png" %}">
+				  </div>
+				  <div class="mdl-cell mdl-cell--1-col mdl-cell--stretch mdl-cell--hide-phone mdl-cell--hide-tablet mdl-shadow--2dp" id="box4">
+				  </div>
+				  <div class="mdl-cell mdl-cell--11-col mdl-cell--hide-phone mdl-cell--hide-tablet">
+				  	<p>This is the first paragraph. It equals 4 columns normally. But on a tablet it equals 6 columns. Now we are gonna add some rubbish to make this paragrapg unnecessarily long. Ok! Hope this material design lokks good. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text.</p>
+				  </div>
+				  <!-- For Mobile and Tablet -->
+				  <div class="mdl-cell mdl-cell--stretch mdl-cell--hide-desktop mdl-cell--hide-phone mdl-cell--1-col-tablet mdl-shadow--2dp" id="box4">
+				  </div>
+				  <div class="mdl-cell mdl-cell--2-col-phone mdl-cell--hide-desktop mdl-cell--3-col-tablet">
+				  	<p><strong>MeraMedicare</strong><br>Feb 15' - April 15'</p>
+				  </div>
+				  <div class="mdl-cell mdl-cell--hide-desktop mdl-cell--hide-phone mdl-cell--1-col-tablet">
+				  </div>
+				  <div class="mdl-cell mdl-cell--hide-desktop mdl-cell--2-col-phone mdl-cell--3-col-tablet">
+				  	<img width="100%" src="{% static "meramedicare.png" %}">
+				  </div>
+				  <div class="mdl-cell mdl-cell--stretch mdl-cell--hide-desktop mdl-cell--hide-phone mdl-cell--1-col-tablet mdl-shadow--2dp" id="box4">
+				  </div>
+				  <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--hide-desktop mdl-cell--7-col-tablet">
+				  	<p>This is the first paragraph. It equals 4 columns normally. But on a tablet it equals 6 columns. Now we are gonna add some rubbish to make this paragrapg unnecessarily long. Ok! Hope this material design lokks good. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text.</p>
+				  </div>
+				  <div class="mdl-cell mdl-cell--stretch mdl-cell--hide-desktop mdl-cell--hide-phone mdl-cell--1-col-tablet mdl-shadow--2dp" id="box4">
+				  </div>
+				  <div class="mdl-cell mdl-cell--3-col-phone mdl-cell--hide-desktop mdl-cell--3-col-tablet">
+				  	<p><strong>Thrill Pte. Ltd.</strong><br>June 15' - Aug 15'</p>
+				  </div>
+				  <div class="mdl-cell mdl-cell--hide-desktop mdl-cell--hide-phone mdl-cell--3-col-tablet">
+				  </div>
+				  <div class="mdl-cell mdl-cell--hide-desktop mdl-cell--1-col-phone mdl-cell--1-col-tablet">
+				  	<img width="100%" src="{% static "thrill.png" %}">
+				  </div>
+				  <div class="mdl-cell mdl-cell--stretch mdl-cell--hide-desktop mdl-cell--hide-phone mdl-cell--1-col-tablet mdl-shadow--2dp" id="box4">
+				  </div>
+				  <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--hide-desktop mdl-cell--7-col-tablet">
+				  	<p>This is the first paragraph. It equals 4 columns normally. But on a tablet it equals 6 columns. Now we are gonna add some rubbish to make this paragrapg unnecessarily long. Ok! Hope this material design lokks good. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text. And some more text.</p>
+				  </div>
+				  <!-- EXPERIENCE ENDS HERE -->
+				</div>
+				<h3 id="int" class="margin-default">Intrests</h3>
+		    	<hr class="margin-default">
+				<div class="mdl-grid margin-grid">
+				  <div class="mdl-cell mdl-cell--1-col mdl-cell--stretch mdl-cell--hide-phone mdl-cell--1-col-tablet mdl-shadow--2dp" id="box5">
+				  </div>
+				  <div class="mdl-cell mdl-cell--11-col mdl-cell--4-col-phone mdl-cell--7-col-tablet">
+				  <p>yoyo</p>
+				  </div>
+				</div>
+				</div>
+		    </div>
+		  </main>
+		</div>
+		<!--<script type="text/javascript">
+		var $root = $('html, body');
+			$('a').click(function() {
+			    $root.animate({
+			        scrollTop: $( $.attr(this, 'href') ).offset().top
+			    }, 1000);
+			    return false;
+			});
+		</script>-->
+	</body>
+</html>

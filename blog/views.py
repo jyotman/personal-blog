@@ -61,5 +61,5 @@ def parkingAccess(request):
     response = JsonResponse(data, safe=False)
     return HttpResponse(response)
 
-def test(request):
-    return render(request, 'blog/test.html')
+def aboutme(request):
+    return render(request, 'blog/resume.html')

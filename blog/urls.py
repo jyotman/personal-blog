@@ -8,5 +8,5 @@ urlpatterns = [
     url(r'^post/(?P<pk>[0-9]+)/edit/$', views.post_edit, name='post_edit'),
     url(r'^parking/$', views.parkingSave),
     url(r'^parking/1/$', views.parkingAccess),
-    url(r'^test/$', views.test),
+    url(r'^aboutme/$', views.aboutme),
 ]
