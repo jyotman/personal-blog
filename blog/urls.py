@@ -6,7 +6,7 @@ urlpatterns = [
     url(r'^post/(?P<pk>[0-9]+)/$', views.post_detail),
     url(r'^post/new/$', views.post_new, name='post_new'),
     url(r'^post/(?P<pk>[0-9]+)/edit/$', views.post_edit, name='post_edit'),
-    url(r'^parking/$', views.parkingSave),
-    url(r'^parking/1/$', views.parkingAccess),
+    url(r'^parking/post/$', views.parkingSave),
+    url(r'^parking/get/$', views.parkingAccess),
     url(r'^aboutme/$', views.aboutme),
 ]
