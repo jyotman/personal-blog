@@ -43,14 +43,17 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
 
+
 @csrf_exempt
-def parkingSave(request):
+def parkingUpdate(request):
     if request.method == "POST":
         Slot = request.POST['id']
         Status = request.POST['status']
-        p = Parking(slot=int(Slot), status=Status)
+        #p = Parking(slot=int(Slot), status=Status)
+        p = Parking.objects.get(pk=int(Slot))
+        setattr(p, 'status', Status)
         p.save()
-        return HttpResponse('Slot ' + Slot + ' is now ' + Status)
+        return HttpResponse('Slot Success')
     else:
         return HttpResponse('Blank Page')
 
