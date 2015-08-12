@@ -24,3 +24,6 @@ class Parking(models.Model):
     def __str__(self):
         return self.status
 
+class ProfileImage(models.Model):
+    image = models.FileField(upload_to='profile/%Y/%m/%d')
+

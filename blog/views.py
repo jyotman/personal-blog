@@ -1,12 +1,16 @@
 from django.shortcuts import render
 from django.utils import timezone
-from .models import Post, Parking
+from .models import Post, Parking, ProfileImage
 from django.shortcuts import render, get_object_or_404
-from .forms import PostForm
+from .forms import PostForm, ProfileImageForm
 from django.shortcuts import redirect
+from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from django.views.generic import FormView, DetailView, ListView
+from django.core.urlresolvers import reverse
+
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -66,3 +70,32 @@ def parkingAccess(request):
 
 def aboutme(request):
     return render(request, 'blog/resume.html')
+
+
+class ProfileImageView(FormView):
+    template_name = 'blog/profile_image_form.html'
+    form_class = ProfileImageForm
+
+    def form_valid(self, form):
+        profile_image = ProfileImage(
+            image=self.get_form_kwargs().get('files')['image'])
+        profile_image.save()
+        self.id = profile_image.id
+        return HttpResponse("Request Succesful")
+
+    #     return HttpResponseRedirect(self.get_success_url())
+
+    # def get_success_url(self):
+    #     return reverse('profile_image', kwargs={'pk': self.id})
+
+# class ProfileDetailView(DetailView):
+#     model = ProfileImage
+#     template_name = 'blog/profile_image.html'
+#     context_object_name = 'image'
+
+
+# class ProfileImageIndexView(ListView):
+#     model = ProfileImage
+#     template_name = 'blog/profile_image_view.html'
+#     context_object_name = 'images'
+#     queryset = ProfileImage.objects.all()
