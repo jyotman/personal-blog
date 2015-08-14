@@ -17,9 +17,7 @@ urlpatterns = [
     url(r'^parking/post/$', views.parkingUpdate),
     url(r'^parking/get/$', views.parkingAccess),
     url(r'^aboutme/$', views.aboutme),
+    url(r'^contact/$', views.contact),
 
-    # url(r'^$', ProfileImageIndexView.as_view(), name='home'),
     url(r'^upload/', ProfileImageView.as_view(), name='profile_image_upload'),
-    # url(r'^uploaded/(?P<pk>\d+)/$', ProfileDetailView.as_view(),
-    #     name='profile_image'),
 ]

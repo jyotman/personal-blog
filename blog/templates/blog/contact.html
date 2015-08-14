@@ -1,0 +1,69 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.green-pink.min.css" /> 
+		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.1/material.min.js"></script>
+		<link rel="stylesheet" href="{% static "css/resume.css" %}" type="text/css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+		<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+		<!--<script src="{% static "js/resume-jquery.js" %}"></script>-->
+		<title>Contact</title>
+
+	</head>
+	<body>
+		<!-- Always shows a header, even in smaller screens. -->
+		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--accent">
+		  <header class="mdl-layout__header">
+		    <div class="mdl-layout__header-row">
+		      <!-- Title -->
+		      <span class="mdl-layout-title navigation-font-menu">Menu</span>
+		      <!-- Add spacer, to align navigation to the right -->
+		      <div class="mdl-layout-spacer"></div>
+		      <!-- Navigation. We hide it in small screens. -->
+		      <nav class="mdl-navigation mdl-layout--large-screen-only">
+		        <a class="mdl-navigation__link navigation-font" href="#sum">Home</a>
+		      </nav>
+		    </div>
+		  </header>
+		  <div class="mdl-layout__drawer">
+		    <span style="background-color: #f50057" class="mdl-layout-title navigation-font-menu">Menu</span>
+		    <nav class="mdl-navigation">
+
+		      <a class="mdl-navigation__link navigation-font" href="">About Me</a>
+		      <a class="mdl-navigation__link navigation-font" href="contact.html">Contact</a>
+		    </nav>
+		  </div>
+		  <main class="mdl-layout__content">
+		    <div class="page-content">
+		    <!-- Your content goes here -->
+		    <h3 style="text-align: center">DROP A MESSAGE</h3>
+
+		    <form method="post"  style="text-align: center">
+		    	<div class="mdl-textfield mdl-js-textfield" style="border: 1px solid #d3d3d3">
+		    		{% csrf_token %}
+	            	{{ form }}
+		    	</div>
+		    	<div style="margin-top: 2%; margin-bottom: 5%">
+		    		<input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit"/>
+		    	</div>
+		    	
+	        </form>
+
+		    </div>
+		    <footer class="mdl-mini-footer">
+			  <div class="mdl-mini-footer__left-section">
+			    <div class="mdl-logo">Jyotman Singh</div>
+			    <div class="mdl-logo"><a style="text-decoration:none" href="">No Privacy Policy</a></div>
+			    <div class="mdl-logo"><a style="text-decoration:none" href="">No Terms & Conditions</a></div>
+			  </div>
+			</footer>
+		  </main>
+		</div>
+	</body>
+</html>

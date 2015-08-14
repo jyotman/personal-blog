@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.utils import timezone
 from .models import Post, Parking, ProfileImage
 from django.shortcuts import render, get_object_or_404
-from .forms import PostForm, ProfileImageForm
+from .forms import PostForm, ProfileImageForm, ContactMe
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.views.generic import FormView, DetailView, ListView
 from django.core.urlresolvers import reverse
+from django.core.mail import send_mail
 
 
 def post_list(request):
@@ -83,19 +84,28 @@ class ProfileImageView(FormView):
         self.id = profile_image.id
         return HttpResponse("Request Succesful")
 
-    #     return HttpResponseRedirect(self.get_success_url())
+def contact(request):
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = ContactMe(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            mobile = form.cleaned_data['mobile']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
 
-    # def get_success_url(self):
-    #     return reverse('profile_image', kwargs={'pk': self.id})
+            recipients = ['jyotman94@gmail.com']
 
-# class ProfileDetailView(DetailView):
-#     model = ProfileImage
-#     template_name = 'blog/profile_image.html'
-#     context_object_name = 'image'
+            msg = 'Name : ' + name + '\n\nMobile : ' + str(mobile) + '\n\nEmail : ' + str(email) + '\n\nMessage :\n\n' + message 
 
+            send_mail('New Hire Request', msg, 'jyotman94@gmail.com', recipients)
 
-# class ProfileImageIndexView(ListView):
-#     model = ProfileImage
-#     template_name = 'blog/profile_image_view.html'
-#     context_object_name = 'images'
-#     queryset = ProfileImage.objects.all()
+            # return HttpResponseRedirect('/thanks/')
+            return HttpResponse('Successful Submission')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = ContactMe()
+
+    return render(request, 'blog/contact.html', {'form': form.as_p()})
