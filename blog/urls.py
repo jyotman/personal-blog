@@ -16,7 +16,7 @@ urlpatterns = [
     # url(r'^post/(?P<pk>[0-9]+)/edit/$', views.post_edit, name='post_edit'),
     url(r'^parking/post/$', views.parkingUpdate),
     url(r'^parking/get/$', views.parkingAccess),
-    url(r'^aboutme/$', views.aboutme),
+    # url(r'^aboutme/$', views.aboutme),
     url(r'^contact/$', views.contact),
 
     url(r'^upload/', ProfileImageView.as_view(), name='profile_image_upload'),

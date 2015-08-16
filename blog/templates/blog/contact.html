@@ -27,7 +27,7 @@
 		      <div class="mdl-layout-spacer"></div>
 		      <!-- Navigation. We hide it in small screens. -->
 		      <nav class="mdl-navigation mdl-layout--large-screen-only">
-		        <a class="mdl-navigation__link navigation-font" href="#sum">Home</a>
+		        <a class="mdl-navigation__link navigation-font" href="{% url "blog.views.aboutme" %}">Home</a>
 		      </nav>
 		    </div>
 		  </header>
@@ -35,8 +35,8 @@
 		    <span style="background-color: #f50057" class="mdl-layout-title navigation-font-menu">Menu</span>
 		    <nav class="mdl-navigation">
 
-		      <a class="mdl-navigation__link navigation-font" href="">About Me</a>
-		      <a class="mdl-navigation__link navigation-font" href="contact.html">Contact</a>
+		      <a class="mdl-navigation__link navigation-font" href="{% url "blog.views.aboutme" %}">About Me</a>
+		      <a class="mdl-navigation__link navigation-font" href="">Contact</a>
 		    </nav>
 		  </div>
 		  <main class="mdl-layout__content">
