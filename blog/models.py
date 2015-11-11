@@ -1,21 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from django_markdown.models import MarkdownField
 
-class Post(models.Model):
-    author = models.ForeignKey('auth.User')
-    title = models.CharField(max_length=200)
-    text = models.TextField()
-    created_date = models.DateTimeField(
-            default=timezone.now)
-    published_date = models.DateTimeField(
-            blank=True, null=True)
-
-    def publish(self):
-        self.published_date = timezone.now()
-        self.save()
-
-    def __str__(self):
-        return self.title
 
 class Parking(models.Model):
     slot = models.IntegerField(default = -1)
@@ -24,6 +10,18 @@ class Parking(models.Model):
     def __str__(self):
         return self.status
 
-class ProfileImage(models.Model):
-    image = models.FileField(upload_to='profile/%Y/%m/%d')
 
+class Entry(models.Model):
+    title = models.CharField(max_length=200)
+    body = models.TextField()
+    slug = models.SlugField(max_length=200, unique=True)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Blog Entry"
+        verbose_name_plural = "Blog Entries"
+        ordering = ["-created"]

@@ -1,0 +1,73 @@
+{% load staticfiles %}
+{% load django_markdown %}
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.green-pink.min.css" /> 
+		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.1/material.min.js"></script>
+		<link rel="stylesheet" href="{% static "css/resume.css" %}" type="text/css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+		<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+		<title>Jyotman's Blog</title>
+
+	</head>
+	<body>
+		<!-- Always shows a header, even in smaller screens. -->
+		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--accent">
+		  <header class="mdl-layout__header">
+		    <div class="mdl-layout__header-row">
+		      <!-- Title -->
+		      <span class="mdl-layout-title navigation-font-menu">Menu</span>
+		      <!-- Add spacer, to align navigation to the right -->
+		      <div class="mdl-layout-spacer"></div>
+		      <!-- Navigation. We hide it in small screens. -->
+		      <nav class="mdl-navigation mdl-layout--large-screen-only">
+		        <a class="mdl-navigation__link navigation-font" href="#sum">Summary</a>
+		        <a class="mdl-navigation__link navigation-font" href="#edu">Education</a>
+		        <a class="mdl-navigation__link navigation-font" href="#ski">Skills</a>
+		        <a class="mdl-navigation__link navigation-font" href="#exp">Experience</a>
+		        <a class="mdl-navigation__link navigation-font" href="#int">Intrests</a>
+		      </nav>
+		    </div>
+		  </header>
+		  <div class="mdl-layout__drawer">
+		    <span style="background-color: #f50057" class="mdl-layout-title navigation-font-menu">Menu</span>
+		    <nav class="mdl-navigation">
+
+		      <a class="mdl-navigation__link navigation-font" href="">About Me</a>
+		      <a class="mdl-navigation__link navigation-font" href="{% url "blog.views.contact" %}">Contact</a>
+		      <a class="mdl-navigation__link navigation-font" href=""></a>
+		    </nav>
+		  </div>
+
+		<main class="mdl-layout__content">
+		    <div class="page-content">
+				{% block blog_entries %}
+				{% for object in object_list %}
+				<div class="post">
+					<h2>{{ object.title }}</h2>
+					<p class="meta">{{ object.created }}</p>
+					{{ object.body|markdown }}
+				</div>
+				{% endfor %}
+			{% endblock %}
+			</div>
+			
+			<footer class="mdl-mini-footer">
+			  <div class="mdl-mini-footer__left-section">
+			    <div class="mdl-logo">Jyotman Singh</div>
+			    <div class="mdl-logo"><a style="text-decoration:none" href="">No Privacy Policy</a></div>
+			    <div class="mdl-logo"><a style="text-decoration:none" href="">No Terms & Conditions</a></div>
+			  </div>
+			</footer>
+		</main>
+		</div>
+
+	</body>
+</html>
