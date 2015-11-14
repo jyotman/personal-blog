@@ -1,14 +1,10 @@
-from django.shortcuts import render
-from django.utils import timezone
 from .models import Parking, Entry
 from django.shortcuts import render, get_object_or_404
 from .forms import ContactMe
 from django.shortcuts import redirect
-from django.http import HttpResponseRedirect
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-from django.views.generic import FormView, DetailView, ListView
+from django.views.generic import ListView, DetailView
 from django.core.urlresolvers import reverse
 from django.core.mail import send_mail
 
@@ -17,6 +13,10 @@ class BlogIndex(ListView):
 	queryset = Entry.objects.all()
 	template_name = "blog/home.html"
 	#paginate_by = 2
+
+class BlogDetail(DetailView):
+    model = Entry
+    template_name = "blog/post.html"
 
 
 def aboutme(request):

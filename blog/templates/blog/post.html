@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load django_markdown %}
 <!DOCTYPE HTML>
 
 <html>
@@ -6,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.green-pink.min.css" /> 
 	<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
-	<link rel="stylesheet" href="{% static "css/home.css" %}" type="text/css">
+	<link rel="stylesheet" href="{% static "css/code.css" %}" type="text/css">
 
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/railscasts.min.css">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
@@ -45,15 +46,14 @@
 		</div>
 
 		<main class="mdl-layout__content">
-
-			<h1 id="heading" class="margin-default">Welcome to my blog</h1>
-			<div class="page-content margin-default">
-				{% for object in object_list %}
-				<div>
-					<a style="text-decoration:none" href="{% url "entry_detail" slug=object.slug %}"><h3>{{ object.title }}</h3></a>
-					<p>{{ object.created }}</p>
+			<div class="page-content">
+				<div class="post">
+				    <h2><a href="{% url "entry_detail" slug=object.slug %}">{{ object.title }}</a></h2>
+				    <p>
+				      {{ object.created }}
+				    </p>
+				    {{ object.body|markdown }}
 				</div>
-				{% endfor %}
 			</div>
 
 			<footer class="mdl-mini-footer">
