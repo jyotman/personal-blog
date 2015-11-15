@@ -1,15 +1,15 @@
 {% load staticfiles %}
 {% load django_markdown %}
-<!DOCTYPE HTML>
 
+<!DOCTYPE HTML>
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.green-pink.min.css" /> 
 	<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
-	<link rel="stylesheet" href="{% static "css/code.css" %}" type="text/css">
+	<link rel="stylesheet" href="{% static "css/post.css" %}" type="text/css">
 
-	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/railscasts.min.css">
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
 
@@ -39,18 +39,18 @@
 		<div class="mdl-layout__drawer">
 			<span style="background-color: #f50057" class="mdl-layout-title navigation-font-menu">Menu</span>
 			<nav class="mdl-navigation">
-				<a class="mdl-navigation__link navigation-font" href="">Blog</a>
+				<a class="mdl-navigation__link navigation-font" href="{% url "index" %}">Blog</a>
 				<a class="mdl-navigation__link navigation-font" href="{% url "blog.views.aboutme" %}">About Me</a>
 				<a class="mdl-navigation__link navigation-font" href="{% url "blog.views.contact" %}">Contact</a>
 			</nav>
 		</div>
 
 		<main class="mdl-layout__content">
-			<div class="page-content">
-				<div class="post">
-				    <h2><a href="{% url "entry_detail" slug=object.slug %}">{{ object.title }}</a></h2>
-				    <p>
-				      {{ object.created }}
+			<div class="page-content margin-default">
+				<div>
+				    <h3 id="heading">{{ object.title }}</h3>
+				    <p id="date">
+				      {{ object.created }} 	
 				    </p>
 				    {{ object.body|markdown }}
 				</div>

@@ -8,9 +8,14 @@
 	<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
 	<link rel="stylesheet" href="{% static "css/home.css" %}" type="text/css">
 
-	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/railscasts.min.css">
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
-	<script>hljs.initHighlightingOnLoad();</script>
+	<script type="text/javascript">$( function () {
+		alert("hello");
+	    var height_diff = $( window ).height() - $( 'body' ).height();
+	    if ( height_diff > 0 ) {
+	        $( '#footer' ).css( 'margin-top', height_diff );
+	    }
+
+	});</script>
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
