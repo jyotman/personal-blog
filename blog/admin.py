@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Entry
+from .models import Entry, Parking
 from django_markdown.admin import MarkdownModelAdmin
 from django_markdown.widgets import AdminMarkdownWidget
 from django.db.models import TextField
@@ -10,3 +10,5 @@ class EntryAdmin(MarkdownModelAdmin):
 	formfield_overrides = {TextField: {'widget': AdminMarkdownWidget}}
 
 admin.site.register(Entry, EntryAdmin)
+
+admin.site.register(Parking)
