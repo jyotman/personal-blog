@@ -1,4 +1,4 @@
-from .models import Parking, Entry
+from .models import Parking, Entry, Tag
 from django.shortcuts import render, get_object_or_404
 from .forms import ContactMe
 from django.shortcuts import redirect
@@ -13,6 +13,13 @@ class BlogIndex(ListView):
 	queryset = Entry.objects.all()
 	template_name = "blog/home.html"
 	#paginate_by = 2
+
+class BlogIndexTag(ListView):
+    template_name = "blog/tag_list.html"
+
+    def get_queryset(self):
+        self.tag = get_object_or_404(Tag, slug=self.kwargs['slug'])
+        return Entry.objects.filter(tag=self.tag)
 
 class BlogDetail(DetailView):
     model = Entry

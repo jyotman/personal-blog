@@ -65,3 +65,19 @@ footer{
 	bottom: 0;
 	width: 100%;
 }
+
+.tags{
+	text-decoration:none;
+	background-color: #d3d3d3;
+	border-radius: 1.5mm;
+	padding: 0.8mm;
+	font-family: sans-serif;
+}
+
+a.tags:link{
+	color: #000;
+}
+
+a.tags:visited{
+	color: #000;
+}

@@ -8,6 +8,11 @@ class Parking(models.Model):
     def __str__(self):
         return self.status
 
+class Tag(models.Model):
+    slug = models.SlugField(max_length=200, unique=True)
+
+    def __str__(self):
+        return self.slug
 
 class Entry(models.Model):
     title = models.CharField(max_length=200)
@@ -15,6 +20,7 @@ class Entry(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    tag = models.ManyToManyField(Tag)
 
     def __str__(self):
         return self.title
