@@ -21,6 +21,11 @@ class BlogIndexTag(ListView):
         self.tag = get_object_or_404(Tag, slug=self.kwargs['slug'])
         return Entry.objects.filter(tag=self.tag)
 
+    def get_context_data(self, **kwargs):
+        context = super(BlogIndexTag, self).get_context_data(**kwargs)
+        context['slug_selected'] = self.tag
+        return context
+
 class BlogDetail(DetailView):
     model = Entry
     template_name = "blog/post.html"
