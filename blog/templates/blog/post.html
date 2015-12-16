@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load django_markdown %}
+{% load disqus_tags %}
 
 <!DOCTYPE HTML>
 <html>
@@ -54,8 +55,6 @@
 				    </p>
 				    {{ object.body|markdown }}
 				</div>
-
-				{% load disqus_tags %}
 
 				{% disqus_show_comments %}
 			</div>
