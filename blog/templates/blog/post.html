@@ -54,6 +54,10 @@
 				    </p>
 				    {{ object.body|markdown }}
 				</div>
+
+				{% load disqus_tags %}
+				{% disqus_dev %}
+				{% disqus_show_comments %}
 			</div>
 
 			<footer class="mdl-mini-footer">
