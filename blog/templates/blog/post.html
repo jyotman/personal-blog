@@ -1,7 +1,5 @@
 {% load staticfiles %}
 {% load django_markdown %}
-{% load disqus_tags %}
-{% disqus_dev %}
 
 
 <!DOCTYPE HTML>
@@ -15,6 +13,9 @@
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
+
+	{% load disqus_tags %}
+	{% disqus_dev %}
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
