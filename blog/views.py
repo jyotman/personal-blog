@@ -30,6 +30,11 @@ class BlogDetail(DetailView):
     model = Entry
     template_name = "blog/post.html"
 
+def privacyPolicy(request):
+    return render(request, 'blog/privacy.html')
+
+def terms(request):
+    return render(request, 'blog/terms.html')
 
 def aboutme(request):
     return render(request, 'blog/resume.html')

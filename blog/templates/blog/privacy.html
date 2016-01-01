@@ -6,14 +6,13 @@
 		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
 		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.green-pink.min.css" /> 
 		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.1/material.min.js"></script>
-		<link rel="stylesheet" href="{% static "css/resume.css" %}" type="text/css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="{% static "css/privacy.css" %}" type="text/css">
 		<link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
 		<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-		<!--<script src="{% static "js/resume-jquery.js" %}"></script>-->
-		<title>Contact</title>
+		<title>Privacy Policy</title>
 
 	</head>
 	<body>
@@ -36,30 +35,32 @@
 		    <nav class="mdl-navigation">
 		      <a class="mdl-navigation__link navigation-font" href="{% url "index" %}">Blog</a>
 		      <a class="mdl-navigation__link navigation-font" href="{% url "blog.views.aboutme" %}">About Me</a>
-		      <a class="mdl-navigation__link navigation-font" href="">Contact</a>
+		      <a class="mdl-navigation__link navigation-font" href="{% url "blog.views.contact" %}">Contact</a>
 		    </nav>
 		  </div>
 		  <main class="mdl-layout__content">
 		    <div class="page-content">
 		    <!-- Your content goes here -->
-		    <h3 style="text-align: center">DROP A MESSAGE</h3>
+		    <h3 style="text-align: center">Privacy Policy</h3>
 
-		    <form method="post"  style="text-align: center">
-		    	<div class="mdl-textfield mdl-js-textfield" style="border: 1px solid #d3d3d3">
-		    		{% csrf_token %}
-	            	{{ form }}
-		    	</div>
-		    	<div style="margin-top: 2%; margin-bottom: 5%">
-		    		<input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit"/>
-		    	</div>
-		    	
-	        </form>
+		    <p>Your privacy is very important to us. Accordingly, we have developed this Policy in order for you to understand how we collect, use, communicate and disclose and make use of personal information. The following outlines our privacy policy.</p>
+		    <ul>
+		    	<li>Before or at the time of collecting personal information, we will identify the purposes for which information is being collected.</li>
+		    	<li>We will collect and use of personal information solely with the objective of fulfilling those purposes specified by us and for other compatible purposes, unless we obtain the consent of the individual concerned or as required by law.
+		    	</li>
+		    	<li>We will only retain personal information as long as necessary for the fulfillment of those purposes.</li>
+		    	<li>We will collect personal information by lawful and fair means and, where appropriate, with the knowledge or consent of the individual concerned.</li>
+		    	<li>Personal data should be relevant to the purposes for which it is to be used, and, to the extent necessary for those purposes, should be accurate, complete, and up-to-date.</li>
+		    	<li>We will protect personal information by reasonable security safeguards against loss or theft, as well as unauthorized access, disclosure, copying, use or modification.</li>
+		    	<li>We will make readily available to customers information about our policies and practices relating to the management of personal information.</li>
+		    </ul>
+		    <p>We are committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained.</p>
 
 		    </div>
 		    <footer class="mdl-mini-footer">
 			  <div class="mdl-mini-footer__left-section">
 			    <div class="mdl-logo">Jyotman Singh</div>
-			    <div class="mdl-logo"><a style="text-decoration:none" href="{% url "blog.views.privacyPolicy" %}">Privacy Policy</a></div>
+			    <div class="mdl-logo"><a style="text-decoration:none" href="">Privacy Policy</a></div>
 			    <div class="mdl-logo"><a style="text-decoration:none" href="{% url "blog.views.terms" %}">Terms & Conditions</a></div>
 			  </div>
 			</footer>
