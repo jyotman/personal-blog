@@ -14,6 +14,16 @@ class Tag(models.Model):
     def __str__(self):
         return self.slug
 
+class Visit(models.Model):
+    post = models.BooleanField()
+    name = models.CharField(max_length=100)
+    totalCount = models.PositiveIntegerField(default=0)
+    date = models.DateField(auto_now_add=True)
+    dailyCount = models.PositiveIntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
 class Entry(models.Model):
     title = models.CharField(max_length=200)
     body = models.TextField()
@@ -21,6 +31,7 @@ class Entry(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     tag = models.ManyToManyField(Tag)
+    visits = models.ForeignKey(Visit)
 
     def __str__(self):
         return self.title

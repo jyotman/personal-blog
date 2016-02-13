@@ -1,4 +1,4 @@
-from .models import Parking, Entry, Tag
+from .models import Parking, Entry, Tag, Visit
 from django.shortcuts import render, get_object_or_404
 from .forms import ContactMe
 from django.shortcuts import redirect
@@ -7,12 +7,31 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DetailView
 from django.core.urlresolvers import reverse
 from django.core.mail import send_mail
+from django.utils import timezone
 
 
 class BlogIndex(ListView):
-	queryset = Entry.objects.all()
 	template_name = "blog/home.html"
 	#paginate_by = 2
+
+	def increment_count(self):
+		visits = Visit.objects.filter(name="Home").filter(date=timezone.now())
+		if visits.exists():
+			visits = visits[0]
+			visits.totalCount += 1
+			visits.dailyCount += 1
+			visits.save()
+		else:
+			visits = Visit.objects.filter(name="Home").latest('date')
+			visits.dailyCount = 1
+			visits.totalCount += 1
+			visits.save()
+		print("dailyCount = ", visits.dailyCount)
+		print("totalCount = ", visits.totalCount)
+
+	def get_queryset(self):
+		self.increment_count()
+		return Entry.objects.all()
 
 class BlogIndexTag(ListView):
     template_name = "blog/tag_list.html"
@@ -29,6 +48,27 @@ class BlogIndexTag(ListView):
 class BlogDetail(DetailView):
     model = Entry
     template_name = "blog/post.html"
+
+    def increment_count(self, title):
+    	try:
+	    	visits = Visit.objects.get(name=title, date=timezone.now())
+	    	visits.totalCount += 1
+	    	visits.dailyCount += 1
+	    	visits.save()
+    	except Visit.DoesNotExist:
+    		visits = Visit.objects.filter(name=title)
+    		visits = visits.reverse()[0]
+    		visits.dailyCount = 1
+    		visits.totalCount += 1
+    		visits.pk = None
+    		visits.save()
+    	print("dailyCount = ", visits.dailyCount)
+    	print("totalCount = ", visits.totalCount)
+
+    def get_object(self):
+    	entry = super(BlogDetail, self).get_object()
+    	self.increment_count(entry.title)
+    	return entry
 
 def privacyPolicy(request):
     return render(request, 'blog/privacy.html')
