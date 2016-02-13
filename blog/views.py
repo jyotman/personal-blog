@@ -15,115 +15,124 @@ class BlogIndex(ListView):
 	#paginate_by = 2
 
 	def increment_count(self):
-		visits = Visit.objects.filter(name="Home").filter(date=timezone.now())
-		if visits.exists():
-			visits = visits[0]
+		try:
+			visits = Visit.objects.get(name="Home", date=timezone.now())
 			visits.totalCount += 1
 			visits.dailyCount += 1
 			visits.save()
-		else:
-			visits = Visit.objects.filter(name="Home").latest('date')
-			visits.dailyCount = 1
-			visits.totalCount += 1
+		except Visit.DoesNotExist:
+			visits = Visit.objects.filter(name="Home")
+			if visits.exists():
+				visits = visits.reverse()[0]
+				visits.dailyCount = 1
+				visits.totalCount += 1
+				# to create a new visit object from an existing visit object
+				visits.pk = None
+			else:
+				visits = Visit.objects.create(name='Home', post=False)
+				visits.dailyCount = 1
+				visits.totalCount += 1
 			visits.save()
-		print("dailyCount = ", visits.dailyCount)
-		print("totalCount = ", visits.totalCount)
 
 	def get_queryset(self):
 		self.increment_count()
 		return Entry.objects.all()
 
 class BlogIndexTag(ListView):
-    template_name = "blog/tag_list.html"
+	template_name = "blog/tag_list.html"
 
-    def get_queryset(self):
-        self.tag = get_object_or_404(Tag, slug=self.kwargs['slug'])
-        return Entry.objects.filter(tag=self.tag)
+	def get_queryset(self):
+		self.tag = get_object_or_404(Tag, slug=self.kwargs['slug'])
+		return Entry.objects.filter(tag=self.tag)
 
-    def get_context_data(self, **kwargs):
-        context = super(BlogIndexTag, self).get_context_data(**kwargs)
-        context['slug_selected'] = self.tag
-        return context
+	def get_context_data(self, **kwargs):
+		context = super(BlogIndexTag, self).get_context_data(**kwargs)
+		context['slug_selected'] = self.tag
+		return context
 
 class BlogDetail(DetailView):
-    model = Entry
-    template_name = "blog/post.html"
+	model = Entry
+	template_name = "blog/post.html"
 
-    def increment_count(self, title):
-    	try:
-	    	visits = Visit.objects.get(name=title, date=timezone.now())
-	    	visits.totalCount += 1
-	    	visits.dailyCount += 1
-	    	visits.save()
-    	except Visit.DoesNotExist:
-    		visits = Visit.objects.filter(name=title)
-    		visits = visits.reverse()[0]
-    		visits.dailyCount = 1
-    		visits.totalCount += 1
-    		visits.pk = None
-    		visits.save()
-    	print("dailyCount = ", visits.dailyCount)
-    	print("totalCount = ", visits.totalCount)
+	def increment_count(self, title):
+		try:
+			visits = Visit.objects.get(name=title, date=timezone.now())
+			visits.totalCount += 1
+			visits.dailyCount += 1
+			visits.save()
+		except Visit.DoesNotExist:
+			visits = Visit.objects.filter(name=title)
+			visits = visits.reverse()[0]
+			if visits.exists():
+				visits.dailyCount = 1
+				visits.totalCount += 1
+				# to create a new visit object
+				visits.pk = None
+			else:
+				visits = Visit.objects.create(name=title, post=True)
+				visits.dailyCount = 1
+				visits.totalCount += 1
+			visits.save()
 
-    def get_object(self):
-    	entry = super(BlogDetail, self).get_object()
-    	self.increment_count(entry.title)
-    	return entry
+	def get_object(self):
+		entry = super(BlogDetail, self).get_object()
+		self.increment_count(entry.title)
+		return entry
 
 def privacyPolicy(request):
-    return render(request, 'blog/privacy.html')
+	return render(request, 'blog/privacy.html')
 
 def terms(request):
-    return render(request, 'blog/terms.html')
+	return render(request, 'blog/terms.html')
 
 def aboutme(request):
-    return render(request, 'blog/resume.html')
+	return render(request, 'blog/resume.html')
 
 
 def contact(request):
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = ContactMe(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            mobile = form.cleaned_data['mobile']
-            email = form.cleaned_data['email']
-            message = form.cleaned_data['message']
+	if request.method == 'POST':
+		# create a form instance and populate it with data from the request:
+		form = ContactMe(request.POST)
+		# check whether it's valid:
+		if form.is_valid():
+			name = form.cleaned_data['name']
+			mobile = form.cleaned_data['mobile']
+			email = form.cleaned_data['email']
+			message = form.cleaned_data['message']
 
-            recipients = ['jyotman94@gmail.com']
+			recipients = ['jyotman94@gmail.com']
 
-            msg = 'Name : ' + name + '\n\nMobile : ' + str(mobile) + '\n\nEmail : ' + str(email) + '\n\nMessage :\n\n' + message 
+			msg = 'Name : ' + name + '\n\nMobile : ' + str(mobile) + '\n\nEmail : ' + str(email) + '\n\nMessage :\n\n' + message 
 
-            send_mail('New Hire Request', msg, 'jyotman94@gmail.com', recipients)
+			send_mail('New Hire Request', msg, 'jyotman94@gmail.com', recipients)
 
-            # return HttpResponseRedirect('/thanks/')
-            return HttpResponse('Successful Submission')
+			# return HttpResponseRedirect('/thanks/')
+			return HttpResponse('Successful Submission')
 
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = ContactMe()
+	# if a GET (or any other method) we'll create a blank form
+	else:
+		form = ContactMe()
 
-    return render(request, 'blog/contact.html', {'form': form.as_p()})
+	return render(request, 'blog/contact.html', {'form': form.as_p()})
 
 
 @csrf_exempt
 def parkingUpdate(request):
-    if request.method == "POST":
-        Slot = request.POST['id']
-        Status = request.POST['status']
-        #p = Parking(slot=int(Slot), status=Status)
-        p = Parking.objects.get(pk=int(Slot))
-        setattr(p, 'status', Status)
-        p.save()
-        return HttpResponse('Slot Success')
-    else:
-        return HttpResponse('Blank Page')
+	if request.method == "POST":
+		Slot = request.POST['id']
+		Status = request.POST['status']
+		#p = Parking(slot=int(Slot), status=Status)
+		p = Parking.objects.get(pk=int(Slot))
+		setattr(p, 'status', Status)
+		p.save()
+		return HttpResponse('Slot Success')
+	else:
+		return HttpResponse('Blank Page')
 
 
 @csrf_exempt
 def parkingAccess(request):
-    querySet = Parking.objects.all()
-    data = [{'slot':item.slot, 'status':item.status} for item in querySet]
-    response = JsonResponse(data, safe=False)
-    return HttpResponse(response)
+	querySet = Parking.objects.all()
+	data = [{'slot':item.slot, 'status':item.status} for item in querySet]
+	response = JsonResponse(data, safe=False)
+	return HttpResponse(response)

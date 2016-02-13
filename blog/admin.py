@@ -10,7 +10,7 @@ class EntryAdmin(MarkdownModelAdmin):
 	formfield_overrides = {TextField: {'widget': AdminMarkdownWidget}}
 
 class VisitAdmin(admin.ModelAdmin):
-	list_display = ('name', 'date')
+	list_display = ('name', 'date', 'dailyCount')
 
 admin.site.register(Entry, EntryAdmin)
 
