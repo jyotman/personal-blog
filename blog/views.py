@@ -62,8 +62,8 @@ class BlogDetail(DetailView):
 			visits.save()
 		except Visit.DoesNotExist:
 			visits = Visit.objects.filter(name=title)
-			visits = visits.reverse()[0]
 			if visits.exists():
+				visits = visits.reverse()[0]
 				visits.dailyCount = 1
 				visits.totalCount += 1
 				# to create a new visit object
