@@ -88,6 +88,9 @@ def terms(request):
 def aboutme(request):
 	return render(request, 'blog/resume.html')
 
+def webmasterVerify(request):
+	return render(request, 'blog/googlef70e42b57a682b5c.html')
+
 
 def contact(request):
 	if request.method == 'POST':

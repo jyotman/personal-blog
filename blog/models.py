@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Parking(models.Model):
     slot = models.IntegerField(default = -1)
     status = models.CharField(max_length = 7)
