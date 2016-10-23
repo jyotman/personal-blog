@@ -1,4 +1,4 @@
-from .models import Parking, Entry, Tag, Visit
+from .models import Entry, Tag, Visit
 from django.shortcuts import render, get_object_or_404
 from .forms import ContactMe
 from django.shortcuts import redirect
@@ -94,10 +94,12 @@ def webmasterVerify(request):
 
 def contact(request):
 	if request.method == 'POST':
+		print("HERE2")
 		# create a form instance and populate it with data from the request:
 		form = ContactMe(request.POST)
 		# check whether it's valid:
 		if form.is_valid():
+			print("HERE3")
 			name = form.cleaned_data['name']
 			mobile = form.cleaned_data['mobile']
 			email = form.cleaned_data['email']
@@ -108,34 +110,15 @@ def contact(request):
 			msg = 'Name : ' + name + '\n\nMobile : ' + str(mobile) + '\n\nEmail : ' + str(email) + '\n\nMessage :\n\n' + message 
 
 			send_mail('New Hire Request', msg, 'jyotman94@gmail.com', recipients)
-
-			# return HttpResponseRedirect('/thanks/')
-			return HttpResponse('Successful Submission')
+			
+			# return HttpResponse('Successful Submission')
+			return HttpResponseRedirect('/?redirect=true')
+		# else:
+		# 	print("HERE4")
+		# 	print(form.errors)
 
 	# if a GET (or any other method) we'll create a blank form
 	else:
 		form = ContactMe()
 
-	return render(request, 'blog/contact.html', {'form': form.as_p()})
-
-
-@csrf_exempt
-def parkingUpdate(request):
-	if request.method == "POST":
-		Slot = request.POST['id']
-		Status = request.POST['status']
-		#p = Parking(slot=int(Slot), status=Status)
-		p = Parking.objects.get(pk=int(Slot))
-		setattr(p, 'status', Status)
-		p.save()
-		return HttpResponse('Slot Success')
-	else:
-		return HttpResponse('Blank Page')
-
-
-@csrf_exempt
-def parkingAccess(request):
-	querySet = Parking.objects.all()
-	data = [{'slot':item.slot, 'status':item.status} for item in querySet]
-	response = JsonResponse(data, safe=False)
-	return HttpResponse(response)
+	return render(request, 'blog/contact.html', {'form': form})

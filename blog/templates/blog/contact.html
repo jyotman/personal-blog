@@ -4,8 +4,8 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
-		<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.green-pink.min.css" /> 
-		<script src="https://storage.googleapis.com/code.getmdl.io/1.0.1/material.min.js"></script>
+		<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.green-pink.min.css" /> 
+		<script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 		<link rel="stylesheet" href="{% static "css/resume.css" %}" type="text/css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
@@ -13,10 +13,35 @@
 		<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 		<!--<script src="{% static "js/resume-jquery.js" %}"></script>-->
+
+		<!-- Setting the required attribute for all form fields -->
+		<script type="text/javascript">
+			function setRequiredAttribute() {
+				var ids = ['id_mobile', 'id_name', 'id_email', 'id_message']
+				for(var i = 0; i < ids.length; i++){
+					var att = document.createAttribute("required");
+					var field = document.getElementById(ids[i]);
+					field.setAttributeNode(att);
+				}
+			}
+		</script>
+
+		<script type="text/javascript">
+			function formSubmitted() {
+				console.log('form submit success!');
+				var loader = document.getElementById('loader');
+				loader.className += " is-active";
+				var submitButton = document.getElementById('submitButton');
+				var att = document.createAttribute("disabled");
+				submitButton.setAttributeNode(att);
+				//submitButton.className += " mdl-button--disabled";
+			}
+		</script>
+
 		<title>Contact</title>
 
 	</head>
-	<body>
+	<body onload="setRequiredAttribute();">
 		<!-- Always shows a header, even in smaller screens. -->
 		<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--accent">
 		  <header class="mdl-layout__header">
@@ -41,21 +66,49 @@
 		  </div>
 		  <main class="mdl-layout__content">
 		    <div class="page-content">
-		    <!-- Your content goes here -->
-		    <h3 style="text-align: center">DROP A MESSAGE</h3>
+		    	<!-- Your content goes here -->
+		    	<h3 style="text-align: center">DROP A MESSAGE</h3>
 
-		    <form method="post"  style="text-align: center">
-		    	<div class="mdl-textfield mdl-js-textfield" style="border: 1px solid #d3d3d3">
-		    		{% csrf_token %}
-	            	{{ form }}
-		    	</div>
-		    	<div style="margin-top: 2%; margin-bottom: 5%">
-		    		<input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit"/>
-		    	</div>
-		    	
-	        </form>
+		        <form style="text-align:center; padding-bottom: 2%" action="/contact/" method="post" onsubmit="formSubmitted()" enctype="multipart/form-data">
+			    	{% csrf_token %}
+		            <ul style="list-style: none">
+						<li>
+							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								{{ form.name}}
+								<label class="mdl-textfield__label" for="id_name">Name</label>
+							</div>
+						</li>
+						<li>
+							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								{{ form.mobile}}
+								<label class="mdl-textfield__label" for="id_mobile">Mobile</label>
+								<span class="mdl-textfield__error">Input is not a number!</span>
+							</div>
+						</li>
+						<li>
+							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								{{ form.email}}
+								<label class="mdl-textfield__label" for="id_email">Email</label>
+								<span class="mdl-textfield__error">Enter a valid email id!</span>
+							</div>
+						</li>
+						<li>
+							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+								{{ form.message}}
+								<label class="mdl-textfield__label" for="id_message">Message</label>
+							</div>
+						</li>
+					</ul>
+			    	
+			    	<!-- MDL Spinner Component -->
+					<div class="mdl-spinner mdl-js-spinner"  id="loader"></div>
 
+					<div style="margin-top: 1%; margin-bottom: 3%">
+						<input class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" id="submitButton" type="submit"/>
+					</div>
+		        </form>
 		    </div>
+
 		    <footer class="mdl-mini-footer">
 			  <div class="mdl-mini-footer__left-section">
 			    <div class="mdl-logo">Jyotman Singh</div>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Entry, Parking, Tag, Visit
+from .models import Entry, Tag, Visit
 from django_markdown.admin import MarkdownModelAdmin
 from django_markdown.widgets import AdminMarkdownWidget
 from django.db.models import TextField
@@ -14,6 +14,5 @@ class VisitAdmin(admin.ModelAdmin):
 
 admin.site.register(Entry, EntryAdmin)
 
-admin.site.register(Parking)
 admin.site.register(Tag)
 admin.site.register(Visit, VisitAdmin)

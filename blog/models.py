@@ -1,13 +1,6 @@
 from django.db import models
 from django.contrib.sitemaps import ping_google
 
-class Parking(models.Model):
-    slot = models.IntegerField(default = -1)
-    status = models.CharField(max_length = 7)
-
-    def __str__(self):
-        return self.status
-
 class Tag(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
 
