@@ -71,7 +71,7 @@
 
 		        <form style="text-align:center; padding-bottom: 2%" action="/contact/" method="post" onsubmit="formSubmitted()" enctype="multipart/form-data">
 			    	{% csrf_token %}
-		            <ul style="list-style: none">
+		            <ul style="list-style: none; padding-left: 0;">
 						<li>
 							<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 								{{ form.name}}
